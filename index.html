@@ -31,10 +31,6 @@
             margin-bottom: 8px;
         }
 
-        header p {
-            font-size: 17px;
-        }
-
         nav {
             background: white;
             padding: 15px;
@@ -51,38 +47,25 @@
 
         .hero {
             text-align: center;
-            padding: 55px 20px;
+            padding: 50px 20px;
             background: #e8f0e3;
         }
 
         .hero h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
             color: #315c35;
+            margin-bottom: 15px;
+            font-size: 30px;
         }
 
         .hero p {
             font-size: 18px;
-            max-width: 700px;
-            margin: auto;
             line-height: 1.6;
         }
 
-        .boton {
-            display: inline-block;
-            margin-top: 25px;
-            background: #315c35;
-            color: white;
-            padding: 14px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
         .productos {
-            padding: 45px 20px;
             max-width: 1100px;
             margin: auto;
+            padding: 45px 20px;
         }
 
         .productos h2 {
@@ -99,26 +82,25 @@
 
         .producto {
             background: white;
+            padding: 22px;
             border-radius: 12px;
-            padding: 25px;
             text-align: center;
             box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        .producto .imagen {
-            height: 150px;
+        .imagen {
+            height: 140px;
             background: #edf3e9;
             border-radius: 10px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            font-size: 55px;
             margin-bottom: 15px;
-            color: #668b45;
-            font-size: 50px;
         }
 
         .producto h3 {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .precio {
@@ -138,21 +120,94 @@
             font-weight: bold;
         }
 
+        .comprar:hover {
+            background: #668b45;
+        }
+
+        /* CARRITO */
+
+        .carrito {
+            max-width: 700px;
+            margin: 20px auto 50px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .carrito h2 {
+            color: #315c35;
+            margin-bottom: 20px;
+        }
+
+        #listaCarrito {
+            margin-bottom: 20px;
+        }
+
+        .item-carrito {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+        }
+
+        .cantidad button {
+            border: none;
+            background: #315c35;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #315c35;
+            margin: 20px 0;
+        }
+
+        .datos input,
+        .datos textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .whatsapp {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #315c35;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         footer {
             background: #263b2a;
             color: white;
             text-align: center;
             padding: 30px 20px;
-            margin-top: 30px;
         }
 
-        @media (max-width: 600px) {
+        @media(max-width:600px) {
+
             header h1 {
                 font-size: 30px;
             }
 
-            .hero h2 {
-                font-size: 25px;
+            .item-carrito {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -168,10 +223,12 @@
 <nav>
     <a href="#inicio">Inicio</a>
     <a href="#productos">Productos</a>
+    <a href="#carrito">🛒 Carrito</a>
     <a href="#contacto">Contacto</a>
 </nav>
 
 <section class="hero" id="inicio">
+
     <h2>Bienvenido a MEDICPRAG</h2>
 
     <p>
@@ -179,9 +236,6 @@
         y realiza tu pedido directamente por WhatsApp.
     </p>
 
-    <a class="boton" href="#productos">
-        Ver productos
-    </a>
 </section>
 
 <section class="productos" id="productos">
@@ -191,47 +245,386 @@
     <div class="grid">
 
         <div class="producto">
+
             <div class="imagen">🌿</div>
+
             <h3>Alcachofa</h3>
+
             <p>Producto de medicina natural.</p>
+
             <div class="precio">$30</div>
-            <button class="comprar">Comprar</button>
+
+            <button
+                class="comprar"
+                onclick="agregarAlCarrito('Alcachofa',30)">
+                Comprar
+            </button>
+
         </div>
 
+
         <div class="producto">
+
             <div class="imagen">🌿</div>
+
             <h3>Aloe Vera</h3>
+
             <p>Producto de medicina natural.</p>
+
             <div class="precio">$30</div>
-            <button class="comprar">Comprar</button>
+
+            <button
+                class="comprar"
+                onclick="agregarAlCarrito('Aloe Vera',30)">
+                Comprar
+            </button>
+
         </div>
 
+
         <div class="producto">
+
             <div class="imagen">🌿</div>
+
             <h3>Colágeno Hidrolizado</h3>
+
             <p>Producto de medicina natural.</p>
+
             <div class="precio">$30</div>
-            <button class="comprar">Comprar</button>
+
+            <button
+                class="comprar"
+                onclick="agregarAlCarrito('Colágeno Hidrolizado',30)">
+                Comprar
+            </button>
+
         </div>
 
+
         <div class="producto">
+
             <div class="imagen">🌿</div>
+
             <h3>Maca</h3>
+
             <p>Producto de medicina natural.</p>
+
             <div class="precio">$30</div>
-            <button class="comprar">Comprar</button>
+
+            <button
+                class="comprar"
+                onclick="agregarAlCarrito('Maca',30)">
+                Comprar
+            </button>
+
         </div>
 
     </div>
 
 </section>
 
+
+<section class="carrito" id="carrito">
+
+    <h2>🛒 Tu carrito</h2>
+
+    <div id="listaCarrito">
+        <p>Tu carrito está vacío.</p>
+    </div>
+
+    <div class="total">
+        Total: $<span id="total">0.00</span>
+    </div>
+
+    <div class="datos">
+
+        <h3>Datos para el pedido</h3>
+
+        <br>
+
+        <input
+            type="text"
+            id="nombre"
+            placeholder="Nombre completo">
+
+        <input
+            type="tel"
+            id="telefono"
+            placeholder="Número de teléfono">
+
+        <textarea
+            id="direccion"
+            rows="3"
+            placeholder="Dirección de entrega"></textarea>
+
+        <button
+            class="whatsapp"
+            onclick="enviarWhatsApp()">
+
+            📲 Enviar pedido por WhatsApp
+
+        </button>
+
+    </div>
+
+</section>
+
+
 <footer id="contacto">
+
     <h3>MEDICPRAG</h3>
+
     <p>Medicina natural</p>
-    <p>Pedidos por WhatsApp: 099 704 6252</p>
+
+    <p>WhatsApp: 099 704 6252</p>
+
     <p>Loja - Ecuador</p>
+
 </footer>
+
+
+<script>
+
+let carrito = [];
+
+
+function agregarAlCarrito(nombre, precio) {
+
+    let producto = carrito.find(
+        item => item.nombre === nombre
+    );
+
+    if (producto) {
+
+        producto.cantidad++;
+
+    } else {
+
+        carrito.push({
+
+            nombre: nombre,
+
+            precio: precio,
+
+            cantidad: 1
+
+        });
+
+    }
+
+    mostrarCarrito();
+
+    document
+        .getElementById("carrito")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+function cambiarCantidad(nombre, cambio) {
+
+    let producto = carrito.find(
+        item => item.nombre === nombre
+    );
+
+    if (!producto) return;
+
+    producto.cantidad += cambio;
+
+    if (producto.cantidad <= 0) {
+
+        carrito = carrito.filter(
+            item => item.nombre !== nombre
+        );
+
+    }
+
+    mostrarCarrito();
+}
+
+
+function mostrarCarrito() {
+
+    let lista =
+        document.getElementById("listaCarrito");
+
+    let total =
+        document.getElementById("total");
+
+    if (carrito.length === 0) {
+
+        lista.innerHTML =
+            "<p>Tu carrito está vacío.</p>";
+
+        total.textContent = "0.00";
+
+        return;
+    }
+
+
+    lista.innerHTML = "";
+
+    let totalCompra = 0;
+
+
+    carrito.forEach(producto => {
+
+        let subtotal =
+            producto.precio *
+            producto.cantidad;
+
+        totalCompra += subtotal;
+
+
+        lista.innerHTML += `
+
+            <div class="item-carrito">
+
+                <div>
+
+                    <strong>
+                        ${producto.nombre}
+                    </strong>
+
+                    <br>
+
+                    $${producto.precio.toFixed(2)}
+                    cada uno
+
+                </div>
+
+
+                <div class="cantidad">
+
+                    <button
+                        onclick="cambiarCantidad('${producto.nombre}',-1)">
+                        −
+                    </button>
+
+                    <strong>
+                        ${producto.cantidad}
+                    </strong>
+
+                    <button
+                        onclick="cambiarCantidad('${producto.nombre}',1)">
+                        +
+                    </button>
+
+                </div>
+
+
+                <strong>
+                    $${subtotal.toFixed(2)}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+
+    total.textContent =
+        totalCompra.toFixed(2);
+}
+
+
+function enviarWhatsApp() {
+
+    if (carrito.length === 0) {
+
+        alert("Tu carrito está vacío.");
+
+        return;
+    }
+
+
+    let nombre =
+        document.getElementById("nombre").value;
+
+    let telefono =
+        document.getElementById("telefono").value;
+
+    let direccion =
+        document.getElementById("direccion").value;
+
+
+    if (!nombre || !telefono || !direccion) {
+
+        alert(
+            "Por favor completa tu nombre, teléfono y dirección."
+        );
+
+        return;
+    }
+
+
+    let mensaje =
+        "Hola MEDICPRAG, quiero realizar el siguiente pedido:%0A%0A";
+
+
+    let totalCompra = 0;
+
+
+    carrito.forEach(producto => {
+
+        let subtotal =
+            producto.precio *
+            producto.cantidad;
+
+        totalCompra += subtotal;
+
+
+        mensaje +=
+            "• " +
+            producto.nombre +
+            " x" +
+            producto.cantidad +
+            " - $" +
+            subtotal.toFixed(2) +
+            "%0A";
+
+    });
+
+
+    mensaje +=
+        "%0A*Total: $" +
+        totalCompra.toFixed(2) +
+        "*";
+
+
+    mensaje +=
+        "%0A%0ANombre: " +
+        encodeURIComponent(nombre);
+
+
+    mensaje +=
+        "%0ATeléfono: " +
+        encodeURIComponent(telefono);
+
+
+    mensaje +=
+        "%0ADirección: " +
+        encodeURIComponent(direccion);
+
+
+    let numero =
+        "593997046252";
+
+
+    let url =
+        "https://wa.me/" +
+        numero +
+        "?text=" +
+        mensaje;
+
+
+    window.open(url, "_blank");
+
+}
+
+</script>
 
 </body>
 </html>
