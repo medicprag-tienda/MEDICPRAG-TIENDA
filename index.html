@@ -1,628 +1,886 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MEDICPRAG | Medicina Natural</title>
+<title>MEDICPRAG - Tienda Natural</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f8f3;
-            color: #263b2a;
-        }
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f8f3;
+    color:#244d2b;
+}
 
-        header {
-            background: linear-gradient(135deg, #315c35, #668b45);
-            color: white;
-            padding: 25px 20px;
-            text-align: center;
-        }
+header{
+    background:linear-gradient(135deg,#315f32,#6f8f3d);
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
 
-        header h1 {
-            font-size: 38px;
-            margin-bottom: 8px;
-        }
+.logo{
+    font-size:34px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
 
-        nav {
-            background: white;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
+.slogan{
+    margin-top:7px;
+    font-size:15px;
+}
 
-        nav a {
-            color: #315c35;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
+nav{
+    background:white;
+    padding:12px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
 
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: #e8f0e3;
-        }
+nav button{
+    border:none;
+    background:none;
+    color:#315f32;
+    font-weight:bold;
+    margin:5px 12px;
+    cursor:pointer;
+    font-size:15px;
+}
 
-        .hero h2 {
-            color: #315c35;
-            margin-bottom: 15px;
-            font-size: 30px;
-        }
+nav button:hover{
+    color:#789447;
+}
 
-        .hero p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
+.container{
+    width:94%;
+    max-width:1200px;
+    margin:30px auto;
+}
 
-        .productos {
-            max-width: 1100px;
-            margin: auto;
-            padding: 45px 20px;
-        }
+.titulo{
+    text-align:center;
+    margin-bottom:25px;
+    color:#315f32;
+}
 
-        .productos h2 {
-            text-align: center;
-            color: #315c35;
-            margin-bottom: 30px;
-        }
+.filtros{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+.filtros button{
+    padding:10px 18px;
+    border:1px solid #63833d;
+    border-radius:25px;
+    background:white;
+    color:#315f32;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-        .producto {
-            background: white;
-            padding: 22px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-        }
+.filtros button:hover,
+.filtros button.activo{
+    background:#63833d;
+    color:white;
+}
 
-        .imagen {
-            height: 140px;
-            background: #edf3e9;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
+.productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
 
-        .producto h3 {
-            margin-bottom: 8px;
-        }
+.producto{
+    background:white;
+    border-radius:14px;
+    padding:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.10);
+    display:flex;
+    flex-direction:column;
+    transition:.2s;
+}
 
-        .precio {
-            color: #315c35;
-            font-size: 22px;
-            font-weight: bold;
-            margin: 12px 0;
-        }
+.producto:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
 
-        .comprar {
-            border: none;
-            background: #315c35;
-            color: white;
-            padding: 11px 20px;
-            border-radius: 7px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+.producto-imagen{
+    width:100%;
+    height:210px;
+    background:#f5f8f2;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    margin-bottom:15px;
+}
 
-        .comprar:hover {
-            background: #668b45;
-        }
+.producto-imagen img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
 
-        /* CARRITO */
+.sin-imagen{
+    color:#8a9a82;
+    font-size:14px;
+    text-align:center;
+    padding:20px;
+}
 
-        .carrito {
-            max-width: 700px;
-            margin: 20px auto 50px;
-            padding: 25px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-        }
+.producto h3{
+    color:#315f32;
+    margin-bottom:8px;
+    min-height:42px;
+}
 
-        .carrito h2 {
-            color: #315c35;
-            margin-bottom: 20px;
-        }
+.categoria{
+    font-size:12px;
+    color:#789447;
+    font-weight:bold;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
 
-        #listaCarrito {
-            margin-bottom: 20px;
-        }
+.descripcion{
+    font-size:14px;
+    color:#555;
+    line-height:1.45;
+    min-height:62px;
+    margin-bottom:10px;
+}
 
-        .item-carrito {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid #ddd;
-            padding: 12px 0;
-        }
+.precio{
+    font-size:22px;
+    font-weight:bold;
+    color:#315f32;
+    margin:8px 0 12px;
+}
 
-        .cantidad button {
-            border: none;
-            background: #315c35;
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.producto button{
+    background:#315f32;
+    color:white;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:auto;
+}
 
-        .total {
-            font-size: 22px;
-            font-weight: bold;
-            color: #315c35;
-            margin: 20px 0;
-        }
+.producto button:hover{
+    background:#6f8f3d;
+}
 
-        .datos input,
-        .datos textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            font-size: 15px;
-        }
+#carrito{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 3px 12px rgba(0,0,0,.10);
+    margin-top:40px;
+}
 
-        .whatsapp {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: #315c35;
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.carrito-item{
+    border-bottom:1px solid #ddd;
+    padding:12px 0;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+}
 
-        footer {
-            background: #263b2a;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
+.cantidad{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
 
-        @media(max-width:600px) {
+.cantidad button{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:5px;
+    background:#63833d;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-            header h1 {
-                font-size: 30px;
-            }
+.total{
+    font-size:23px;
+    font-weight:bold;
+    text-align:right;
+    color:#315f32;
+    margin:20px 0;
+}
 
-            .item-carrito {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-    </style>
+.formulario{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+
+.formulario input,
+.formulario textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.formulario textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.btn-whatsapp{
+    background:#25D366 !important;
+    font-size:16px;
+}
+
+.vacio{
+    text-align:center;
+    padding:25px;
+    color:#777;
+}
+
+footer{
+    background:#315f32;
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    margin-top:50px;
+}
+
+@media(max-width:600px){
+    .logo{
+        font-size:27px;
+    }
+
+    .productos{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .producto{
+        padding:10px;
+    }
+
+    .producto-imagen{
+        height:150px;
+    }
+
+    .producto h3{
+        font-size:15px;
+    }
+
+    .descripcion{
+        font-size:12px;
+    }
+
+    .precio{
+        font-size:18px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>MEDICPRAG</h1>
-    <p>La mejor decisión para tu salud</p>
+    <div class="logo">MEDICPRAG</div>
+    <div class="slogan">LA MEJOR DECISIÓN PARA TU SALUD</div>
 </header>
 
 <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#productos">Productos</a>
-    <a href="#carrito">🛒 Carrito</a>
-    <a href="#contacto">Contacto</a>
+    <button onclick="irA('inicio')">Inicio</button>
+    <button onclick="irA('productos')">Productos</button>
+    <button onclick="irA('carrito')">🛒 Carrito (<span id="contador">0</span>)</button>
 </nav>
 
-<section class="hero" id="inicio">
+<section id="inicio" class="container">
+    <h1 class="titulo">Productos Naturales MEDICPRAG</h1>
 
-    <h2>Bienvenido a MEDICPRAG</h2>
+    <div class="filtros">
+        <button class="activo" onclick="filtrar('todos',this)">Todos</button>
+        <button onclick="filtrar('jarabes',this)">Jarabes</button>
+        <button onclick="filtrar('capsulas',this)">Cápsulas</button>
+        <button onclick="filtrar('polvos',this)">Polvos</button>
+    </div>
 
-    <p>
-        Encuentra nuestros productos de medicina natural
-        y realiza tu pedido directamente por WhatsApp.
-    </p>
+    <div id="productos" class="productos"></div>
 
+    <div id="carrito">
+        <h2 class="titulo">🛒 Mi carrito</h2>
+        <div id="listaCarrito"></div>
+
+        <div class="total">
+            Total: $<span id="total">0.00</span>
+        </div>
+
+        <div class="formulario">
+            <input id="nombre" type="text" placeholder="Nombre completo">
+            <input id="telefono" type="tel" placeholder="Número de teléfono">
+            <textarea id="direccion" placeholder="Dirección de entrega"></textarea>
+
+            <button class="btn-whatsapp" onclick="enviarWhatsApp()">
+                📲 ENVIAR PEDIDO POR WHATSAPP
+            </button>
+        </div>
+    </div>
 </section>
 
-<section class="productos" id="productos">
-
-    <h2>Nuestros productos</h2>
-
-    <div class="grid">
-
-        <div class="producto">
-
-            <div class="imagen">🌿</div>
-
-            <h3>Alcachofa</h3>
-
-            <p>Producto de medicina natural.</p>
-
-            <div class="precio">$30</div>
-
-            <button
-                class="comprar"
-                onclick="agregarAlCarrito('Alcachofa',30)">
-                Comprar
-            </button>
-
-        </div>
-
-
-        <div class="producto">
-
-            <div class="imagen">🌿</div>
-
-            <h3>Aloe Vera</h3>
-
-            <p>Producto de medicina natural.</p>
-
-            <div class="precio">$30</div>
-
-            <button
-                class="comprar"
-                onclick="agregarAlCarrito('Aloe Vera',30)">
-                Comprar
-            </button>
-
-        </div>
-
-
-        <div class="producto">
-
-            <div class="imagen">🌿</div>
-
-            <h3>Colágeno Hidrolizado</h3>
-
-            <p>Producto de medicina natural.</p>
-
-            <div class="precio">$30</div>
-
-            <button
-                class="comprar"
-                onclick="agregarAlCarrito('Colágeno Hidrolizado',30)">
-                Comprar
-            </button>
-
-        </div>
-
-
-        <div class="producto">
-
-            <div class="imagen">🌿</div>
-
-            <h3>Maca</h3>
-
-            <p>Producto de medicina natural.</p>
-
-            <div class="precio">$30</div>
-
-            <button
-                class="comprar"
-                onclick="agregarAlCarrito('Maca',30)">
-                Comprar
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="carrito" id="carrito">
-
-    <h2>🛒 Tu carrito</h2>
-
-    <div id="listaCarrito">
-        <p>Tu carrito está vacío.</p>
-    </div>
-
-    <div class="total">
-        Total: $<span id="total">0.00</span>
-    </div>
-
-    <div class="datos">
-
-        <h3>Datos para el pedido</h3>
-
-        <br>
-
-        <input
-            type="text"
-            id="nombre"
-            placeholder="Nombre completo">
-
-        <input
-            type="tel"
-            id="telefono"
-            placeholder="Número de teléfono">
-
-        <textarea
-            id="direccion"
-            rows="3"
-            placeholder="Dirección de entrega"></textarea>
-
-        <button
-            class="whatsapp"
-            onclick="enviarWhatsApp()">
-
-            📲 Enviar pedido por WhatsApp
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<footer id="contacto">
-
-    <h3>MEDICPRAG</h3>
-
-    <p>Medicina natural</p>
-
-    <p>WhatsApp: 099 704 6252</p>
-
-    <p>Loja - Ecuador</p>
-
+<footer>
+    <strong>MEDICPRAG</strong>
+    <br><br>
+    La mejor decisión para tu salud
+    <br>
+    Loja - Ecuador
+    <br>
+    WhatsApp: 099 704 6252
 </footer>
-
 
 <script>
 
+const productos = [
+
+/* ===================== JARABES ===================== */
+
+{
+nombre:"ALCACHOFA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"ACEITE DE HIGADO DE BACALAO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"ALOE VERA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"BOIXURIN PLUS",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"BOLDO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"CARDO MARIANO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"CHANCAPIEDRA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"CLOROFILA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"CLORURO DE MAGNESIO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"COLÁGENO HIDROLIZADO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"DEFENSOR",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"DIENTE DE LEÓN",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"GINKGOBILOBA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"JALEA DE MATE",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"LIMPIADOR ARTERIAL VENOSO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"MACA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"MACH PREMIUM",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"MATCHA DTS",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"MULTIVITAMÍNICO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"OMEGA 3, 6 Y 9",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"PROPOLEO+ AJOS + TOTUMO + POLEN",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"SILUET",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"FENOGRECO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"FERRO BULL",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"SIX PLANTS PLUSS",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"TÉ VERDE",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"UÑA DE GATO",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"VARINA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"VIRELAX",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"VITAMINA B12",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"VITAMINA C",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"VITAMINICO B",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"ZARZAPARILLA",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"COLLAGEN PLUSS",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"GAS-CAS",
+categoria:"jarabes",
+precio:30
+},
+{
+nombre:"HEP-CAS",
+categoria:"jarabes",
+precio:30
+},
+
+/* ===================== CÁPSULAS ===================== */
+
+{
+nombre:"MACA YELLOW",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"MACA NEGRA",
+categoria:"capsulas",
+precio:28
+},
+{
+nombre:"MACA RED",
+categoria:"capsulas",
+precio:32
+},
+{
+nombre:"MENOS PAUSE",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"MORINGA",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"PROSS",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"RESVERATROL + NIACINA",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"SBELT",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"V@RINA",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"YACON – NOPAL",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"STEEM CELLZ PLUSS",
+categoria:"capsulas",
+precio:30
+},
+{
+nombre:"COLLAGEN PLUSS",
+categoria:"capsulas",
+precio:35
+},
+
+/* ===================== POLVOS ===================== */
+
+{
+nombre:"CARTILAGO DE TIBURON",
+categoria:"polvos",
+precio:40
+},
+{
+nombre:"CITRATODE MAGNESIO+CITRATO DE POTASIO",
+categoria:"polvos",
+precio:35
+},
+{
+nombre:"COLLAGEN PLUS 500gr",
+categoria:"polvos",
+precio:50
+},
+{
+nombre:"FIBRACREAM",
+categoria:"polvos",
+precio:30
+},
+{
+nombre:"GLICINATO DE MAGNESIO",
+categoria:"polvos",
+precio:30
+},
+{
+nombre:"ONCOLLAGEN",
+categoria:"polvos",
+precio:80
+},
+{
+nombre:"SUPERFIBRA",
+categoria:"polvos",
+precio:30
+}
+
+];
+
 let carrito = [];
 
+function imagenProducto(producto){
 
-function agregarAlCarrito(nombre, precio) {
+    const archivo = producto.nombre
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-|-$/g,"");
 
-    let producto = carrito.find(
-        item => item.nombre === nombre
-    );
-
-    if (producto) {
-
-        producto.cantidad++;
-
-    } else {
-
-        carrito.push({
-
-            nombre: nombre,
-
-            precio: precio,
-
-            cantidad: 1
-
-        });
-
-    }
-
-    mostrarCarrito();
-
-    document
-        .getElementById("carrito")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    return "productos/" + archivo + ".jpg";
 }
 
+function mostrarProductos(lista = productos){
 
-function cambiarCantidad(nombre, cambio) {
+    const contenedor = document.getElementById("productos");
 
-    let producto = carrito.find(
-        item => item.nombre === nombre
-    );
+    contenedor.innerHTML = "";
 
-    if (!producto) return;
+    lista.forEach((producto,index)=>{
 
-    producto.cantidad += cambio;
+        const card = document.createElement("div");
+        card.className = "producto";
 
-    if (producto.cantidad <= 0) {
+        card.innerHTML = `
+            <div class="producto-imagen">
+                <img 
+                    src="${imagenProducto(producto)}"
+                    alt="${producto.nombre}"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'sin-imagen\\'>📷<br>Imagen próximamente</div>'"
+                >
+            </div>
 
-        carrito = carrito.filter(
-            item => item.nombre !== nombre
+            <div class="categoria">${producto.categoria}</div>
+
+            <h3>${producto.nombre}</h3>
+
+            <div class="descripcion">
+                Información del producto disponible en el catálogo MEDICPRAG.
+            </div>
+
+            <div class="precio">
+                $${producto.precio.toFixed(2)}
+            </div>
+
+            <button onclick="agregarAlCarrito(${index})">
+                Comprar
+            </button>
+        `;
+
+        contenedor.appendChild(card);
+    });
+}
+
+function filtrar(categoria,boton){
+
+    document.querySelectorAll(".filtros button")
+        .forEach(b=>b.classList.remove("activo"));
+
+    boton.classList.add("activo");
+
+    if(categoria === "todos"){
+        mostrarProductos(productos);
+    }else{
+        mostrarProductos(
+            productos.filter(p=>p.categoria === categoria)
         );
-
     }
-
-    mostrarCarrito();
 }
 
+function agregarAlCarrito(index){
 
-function mostrarCarrito() {
+    const producto = productos[index];
 
-    let lista =
-        document.getElementById("listaCarrito");
+    const existente = carrito.find(
+        item => item.nombre === producto.nombre
+    );
 
-    let total =
-        document.getElementById("total");
+    if(existente){
+        existente.cantidad++;
+    }else{
+        carrito.push({
+            ...producto,
+            cantidad:1
+        });
+    }
 
-    if (carrito.length === 0) {
+    actualizarCarrito();
 
-        lista.innerHTML =
-            "<p>Tu carrito está vacío.</p>";
+    document.getElementById("carrito")
+        .scrollIntoView({behavior:"smooth"});
+}
 
-        total.textContent = "0.00";
+function cambiarCantidad(index,cambio){
+
+    carrito[index].cantidad += cambio;
+
+    if(carrito[index].cantidad <= 0){
+        carrito.splice(index,1);
+    }
+
+    actualizarCarrito();
+}
+
+function actualizarCarrito(){
+
+    const lista = document.getElementById("listaCarrito");
+    const contador = document.getElementById("contador");
+    const totalElemento = document.getElementById("total");
+
+    lista.innerHTML = "";
+
+    if(carrito.length === 0){
+
+        lista.innerHTML = `
+            <div class="vacio">
+                Tu carrito está vacío.
+            </div>
+        `;
+
+        contador.textContent = "0";
+        totalElemento.textContent = "0.00";
 
         return;
     }
 
+    let total = 0;
+    let cantidadTotal = 0;
 
-    lista.innerHTML = "";
+    carrito.forEach((item,index)=>{
 
-    let totalCompra = 0;
+        const subtotal = item.precio * item.cantidad;
 
-
-    carrito.forEach(producto => {
-
-        let subtotal =
-            producto.precio *
-            producto.cantidad;
-
-        totalCompra += subtotal;
-
+        total += subtotal;
+        cantidadTotal += item.cantidad;
 
         lista.innerHTML += `
-
-            <div class="item-carrito">
+            <div class="carrito-item">
 
                 <div>
-
-                    <strong>
-                        ${producto.nombre}
-                    </strong>
-
+                    <strong>${item.nombre}</strong>
                     <br>
-
-                    $${producto.precio.toFixed(2)}
-                    cada uno
-
+                    $${item.precio.toFixed(2)}
+                    <br>
+                    Subtotal: $${subtotal.toFixed(2)}
                 </div>
-
 
                 <div class="cantidad">
 
-                    <button
-                        onclick="cambiarCantidad('${producto.nombre}',-1)">
+                    <button onclick="cambiarCantidad(${index},-1)">
                         −
                     </button>
 
-                    <strong>
-                        ${producto.cantidad}
-                    </strong>
+                    <strong>${item.cantidad}</strong>
 
-                    <button
-                        onclick="cambiarCantidad('${producto.nombre}',1)">
+                    <button onclick="cambiarCantidad(${index},1)">
                         +
                     </button>
 
                 </div>
 
-
-                <strong>
-                    $${subtotal.toFixed(2)}
-                </strong>
-
             </div>
-
         `;
-
     });
 
-
-    total.textContent =
-        totalCompra.toFixed(2);
+    contador.textContent = cantidadTotal;
+    totalElemento.textContent = total.toFixed(2);
 }
 
+function enviarWhatsApp(){
 
-function enviarWhatsApp() {
-
-    if (carrito.length === 0) {
+    if(carrito.length === 0){
 
         alert("Tu carrito está vacío.");
 
         return;
     }
 
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const direccion = document.getElementById("direccion").value.trim();
 
-    let nombre =
-        document.getElementById("nombre").value;
+    if(!nombre || !telefono || !direccion){
 
-    let telefono =
-        document.getElementById("telefono").value;
-
-    let direccion =
-        document.getElementById("direccion").value;
-
-
-    if (!nombre || !telefono || !direccion) {
-
-        alert(
-            "Por favor completa tu nombre, teléfono y dirección."
-        );
+        alert("Por favor completa nombre, teléfono y dirección.");
 
         return;
     }
 
+    let mensaje = "Hola MEDICPRAG, quiero realizar el siguiente pedido:%0A%0A";
 
-    let mensaje =
-        "Hola MEDICPRAG, quiero realizar el siguiente pedido:%0A%0A";
+    let total = 0;
 
+    carrito.forEach(item=>{
 
-    let totalCompra = 0;
+        const subtotal = item.precio * item.cantidad;
 
-
-    carrito.forEach(producto => {
-
-        let subtotal =
-            producto.precio *
-            producto.cantidad;
-
-        totalCompra += subtotal;
-
+        total += subtotal;
 
         mensaje +=
-            "• " +
-            producto.nombre +
-            " x" +
-            producto.cantidad +
-            " - $" +
-            subtotal.toFixed(2) +
-            "%0A";
-
+        "Producto: " + item.nombre +
+        "%0ACantidad: " + item.cantidad +
+        "%0APrecio: $" + item.precio.toFixed(2) +
+        "%0ASubtotal: $" + subtotal.toFixed(2) +
+        "%0A%0A";
     });
 
-
     mensaje +=
-        "%0A*Total: $" +
-        totalCompra.toFixed(2) +
-        "*";
+        "TOTAL: $" + total.toFixed(2) +
+        "%0A%0A" +
+        "DATOS DEL CLIENTE" +
+        "%0ANombre: " + encodeURIComponent(nombre) +
+        "%0ATeléfono: " + encodeURIComponent(telefono) +
+        "%0ADirección: " + encodeURIComponent(direccion);
 
+    const numeroWhatsApp = "593997046252";
 
-    mensaje +=
-        "%0A%0ANombre: " +
-        encodeURIComponent(nombre);
-
-
-    mensaje +=
-        "%0ATeléfono: " +
-        encodeURIComponent(telefono);
-
-
-    mensaje +=
-        "%0ADirección: " +
-        encodeURIComponent(direccion);
-
-
-    let numero =
-        "593997046252";
-
-
-    let url =
+    const url =
         "https://wa.me/" +
-        numero +
+        numeroWhatsApp +
         "?text=" +
         mensaje;
 
-
-    window.open(url, "_blank");
-
+    window.open(url,"_blank");
 }
+
+function irA(id){
+
+    document.getElementById(id)
+        .scrollIntoView({behavior:"smooth"});
+}
+
+mostrarProductos();
+actualizarCarrito();
 
 </script>
 
